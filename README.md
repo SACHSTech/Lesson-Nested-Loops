@@ -16,11 +16,11 @@ To represent repetition *within* repetition, we use **nested loops**. A nested l
 ## Basic Structure
 
 ```java
-for (int outer = 0; outer < i; outer++) {
-    // something repeated i times
+for (int outer = 0; outer < outerMax; outer++) {
+    // something repeated outerMax times
 
-    for (int inner = 0; inner < j; inner++) {
-        // something repeated j times each time the outer loop runs
+    for (int inner = 0; inner < innerMax; inner++) {
+        // something repeated innerMax times each time outer loop runs
     }
 }
 ```
