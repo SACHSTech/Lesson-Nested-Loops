@@ -202,7 +202,7 @@ HINT: Remember to use `print` vs `println` appropriately.
 <br>
 
 ### 2. Triangle of Stars (Left-Aligned)
-Ask for `n`. Print a left-aligned triangle. 
+Ask for the number of rows. Print a left-aligned triangle of `*` symbols, as in the example below.
 
 
 ```
@@ -221,41 +221,125 @@ How many rows? 5
 ### 3. Rectangle of Characters
 Ask for width and height. Print a rectangle of `#` symbols.
 
+```
+Width? 6
+Height? 3
+
+Here's your rectangle:
+
+######
+######
+######
+```
+
 <br>
 
 ### 4. Row and Column Labels
-Print coordinates `(row,col)` for a table with 3 rows and 5 columns.
+Print coordinates `(row,col)` for a table with 3 rows and 5 columns. 
+
+HINTS: Rows numbered 1 to 3, columns numbered 1 to 5. No need for user input.
+
+```
+(1,1) (1,2) (1,3) (1,4) (1,5)
+(2,1) (2,2) (2,3) (2,4) (2,5)
+(3,1) (3,2) (3,3) (3,4) (3,5)
+``` 
 
 <br>
 
 ### 5. Multiplication Table up to n
-Ask the user for `n`. Print an `n × n` multiplication table.
+Ask the user for `n`. Print an `n × n` multiplication table. 
+
+```
+n? 4
+1 2 3 4
+2 4 6 8
+3 6 9 12
+4 8 12 16
+```
+
+BONUS: Make the columns line up neatly and draw a border to divide the header row and column.
+
+```
+n? 4
+
+    1   2   3   4
+  +---------------
+1 | 1   2   3   4
+2 | 2   4   6   8
+3 | 3   6   9  12
+4 | 4   8  12  16
+```
 
 <br>
 
 ### 6. Checkerboard of X and O
-Print alternating X and O like:
+Print an alternating `X` and `O` pattern in a 5x5 grid:
+
 ```
 XOXOX
 OXOXO
 XOXOX
 OXOXO
+XOXOX
+```
+
+BONUS: Make the size of the checkerboard determined by user input.
+
+```
+n? 6
+XOXOXO
+OXOXOX
+XOXOXO
+OXOXOX
+XOXOXO
+OXOXOX
 ```
 
 <br>
 
 ### 7. Diagonal Line (Challenging)
-Print `*` where row == column, spaces elsewhere.
-Size determined by user input.
+Print `*` where `row == column`, spaces elsewhere.
+Size is determined by user input.
+
+```
+n? 5
+*    
+  *  
+    *
+      *
+        *
+```
+
+Another runtime example, user enters 3:
+
+```
+n? 3
+*       
+  *     
+    *
+``` 
 
 <br>
 
 ### 8. Hollow Square (Challenging)
 Only print `*` on the border, spaces inside.
 
+HINT: Use conditionals inside the inner loop.
+
+```
+n? 4
+****
+*  *
+*  *
+****
+```
+
 <br>
 
 ### 9. Right-Aligned Number Triangle (Challenging)
+Ask for the number of rows. Print a right-aligned triangle of numbers.
+
 ```
 n = 5
         1
@@ -267,11 +351,5 @@ n = 5
 
 <br>
 
-### 10. Times Table Quiz Generator (Most Challenging)
-Generate random multiplication questions in multiple rows and columns.
-For example, a 3×3 quiz:
-```
-7×4=   3×9=   8×2=
-6×5=   2×7=   9×3=
-4×8=   5×5=   3×6=
-```
+### 10. Custom Pattern (Creative Challenge)
+Create your own unique pattern of text characters using nested loops. It could be a shape, a design, or a combination of characters. Be creative!
