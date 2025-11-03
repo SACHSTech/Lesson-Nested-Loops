@@ -1,24 +1,265 @@
-# ICS3U Base Template for Java Programming
-This repository is a starter for ICS3U assignments. 
+# Lesson: Nested Loops
 
-For a guide on using GitHub with Visual Studio Code, click [here](https://github.com/SACHSTech/Using-GitHub).
+So far, we have used loops to repeat a task in one direction: counting upward, counting downward, or repeating until a condition changes. However, many tasks in computing involve **repeated repetition**. That is, repeating something **inside** something else.
 
-## Includes
-- ConsoleProgram setup for CodeHS-style helper input/output methods
-- Processing starter code (`Sketch.java`)
-- VS Code launch configurations for running console and graphics programs
+Examples:
+- Printing rows and columns (tables, grids)
+- Working with seating charts or game boards
+- Drawing repeated shapes in Processing graphics
+- Building multiplication tables
+- Simulating combinations of values
 
-## Getting Started
-1. Clone this repo in VS Code.
-2. Open the `src` folder.
-3. Edit `Main.java` (or create new files that extend `ConsoleProgram`) for text-based programs.
-4. Edit `Sketch.java` to write programs with Processing graphics.
+To represent repetition *within* repetition, we use **nested loops**. A nested loop is simply a loop **inside another loop**.
 
-## Running Your Programs
-Use the **Run and Debug panel** (on the left sidebar) to launch programs.  
-   - Select **Launch Console Program** when running text-based programs (e.g., `Main.java`, `MyProgram.java`, etc.).  
-   ![screenshot](.media/01.png)
+<br>
 
-   - Select **Launch Processing Sketch** when running graphics assignments (`Sketch.java`).  
-   ![screenshot](.media/02.png)
-   - Avoid using the Play ▶ button in the editor toolbar (see top-right corner). It always repeats the previous successful launch config and may run the wrong one.
+## Basic Structure
+
+```java
+for (int outer = 0; outer < i; outer++) {
+    // something repeated i times
+
+    for (int inner = 0; inner < j; inner++) {
+        // something repeated j times each time the outer loop runs
+    }
+}
+```
+
+The **outer loop** controls the *rows* or overall cycles.  
+The **inner loop** controls the *columns* or work done *within* each cycle.
+
+A helpful way to visualize:
+- The **outer loop** chooses which row you are on.
+- The **inner loop** prints (or processes) the columns in that row.
+
+<br>
+
+## Example 1: Printing a Simple Grid
+
+```java
+for (int row = 1; row <= 3; row++) {
+    for (int col = 1; col <= 3; col++) {
+        System.out.print("(" + row + "," + col + ") ");
+    }
+    System.out.println(); // move to the next row
+}
+```
+
+**Output:**
+```
+(1,1) (1,2) (1,3)
+(2,1) (2,2) (2,3)
+(3,1) (3,2) (3,3)
+```
+
+Notice:
+- `System.out.print()` prints on the same line.
+- `System.out.println()` moves to the next line **after** the inner loop completes.
+
+<br>
+
+## Example 2: Repeating Characters
+
+```java
+for (int row = 1; row <= 4; row++) {
+    for (int col = 1; col <= 6; col++) {
+        System.out.print("*");
+    }
+    System.out.println();
+}
+```
+
+**Output:**
+```
+******
+******
+******
+******
+```
+
+Here, 4 rows × 6 columns.
+
+<br>
+
+## Example 3: Flowchart & Tracing Table
+
+Determine the output of this code using flowcharts and tracing tables:
+
+```java
+for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 2; j++) {
+        System.out.println(i + " " + j);
+    }
+}
+```
+
+We can use a flowchart to visualize the nested loops. The inner loop (j++) is yellow, and the outer loop (i++) is green.
+
+![flowchart](.media/01.png)
+
+This produces the tracing table below:
+
+| Step | `i` value | `j` value | Condition checked | Printed line | Action after print |
+|:---:|:----------------------:|:-------------:|:------------------|:-------------|:-------------------|
+| 1 | 1 | 1 | `i<=3` true, `j<=2` true | `1 1` | `j++` → `j=2` |
+| 2 | 1 | 2 | `i<=3` true, `j<=2` true | `1 2` | `j++` → `j=3` |
+| 3 | 1 | 3 | `j<=2` false → exit inner | — | `i++` → `i=2`, reset `j=1` |
+| 4 | 2 | 1 | `i<=3` true, `j<=2` true | `2 1` | `j++` → `j=2` |
+| 5 | 2 | 2 | `i<=3` true, `j<=2` true | `2 2` | `j++` → `j=3` |
+| 6 | 2 | 3 | `j<=2` false → exit inner | — | `i++` → `i=3`, reset `j=1` |
+| 7 | 3 | 1 | `i<=3` true, `j<=2` true | `3 1` | `j++` → `j=2` |
+| 8 | 3 | 2 | `i<=3` true, `j<=2` true | `3 2` | `j++` → `j=3` |
+| 9 | 3 | 3 | `j<=2` false → exit inner | — | `i++` → `i=4` |
+| 10 | 4 | — | `i<=3` false → exit outer | — | end |
+
+**Expected Output:**
+```
+1 1
+1 2
+2 1
+2 2
+3 1
+3 2
+```
+
+
+<br>
+
+
+## Example 4: Multiplication Table
+
+```java
+for (int row = 1; row <= 5; row++) {
+    for (int col = 1; col <= 5; col++) {
+        System.out.print((row * col) + "	");
+    }
+    System.out.println();
+}
+```
+
+Produces a 5×5 multiplication chart.
+
+<br>
+
+## Example 5: Processing Graphics
+
+This draws a 3×3 grid of circles:
+
+```java
+for (int row = 0; row < 3; row++) {
+   for (int col = 0; col < 3; col++) {
+   ellipse(50 + col * 100, 50 + row * 100, 40, 40);
+   }
+}
+```
+
+Or, in keeping with our desire to write clearer code, we can refactor the above using meaningful variables (and fewer magic numbers) to communicate its intent:
+
+```java
+// Grid configuration
+int rows = 3;
+int cols = 3;
+
+int circleSize = 40;        // diameter
+int spacing = 100;          // distance between circles
+int margin = 50;            // distance from top/left edge
+
+for (int row = 0; row < rows; row++) {
+  for (int col = 0; col < cols; col++) {
+    float x = margin + col * spacing;
+    float y = margin + row * spacing;
+    ellipse(x, y, circleSize, circleSize);
+  }
+}
+```
+
+Code should communicate what we are doing, not just how we are doing it!
+
+<br>
+
+# Practice Problems — Nested Loops
+
+### 1. Number Grid
+Print the numbers 1 to 4 in a 4×4 grid.
+
+```
+1 2 3 4
+1 2 3 4
+1 2 3 4
+1 2 3 4
+```
+
+<br>
+
+### 2. Triangle of Stars (Left-Aligned)
+Ask for `n`. Print a left-aligned triangle.
+
+```
+n = 5
+*
+**
+***
+****
+*****
+```
+
+<br>
+
+
+### 3. Rectangle of Characters
+Ask for width and height. Print a rectangle of `#` symbols.
+
+<br>
+
+### 4. Row and Column Labels
+Print coordinates `(row,col)` for a table with 3 rows and 5 columns.
+
+<br>
+
+### 5. Multiplication Table up to n
+Ask the user for `n`. Print an `n × n` multiplication table.
+
+<br>
+
+### 6. Checkerboard of X and O
+Print alternating X and O like:
+```
+XOXOX
+OXOXO
+XOXOX
+OXOXO
+```
+
+<br>
+
+### 7. Diagonal Line (Challenging)
+Print `*` where row == column, spaces elsewhere.
+Size determined by user input.
+
+<br>
+
+### 8. Hollow Square (Challenging)
+Only print `*` on the border, spaces inside.
+
+<br>
+
+### 9. Right-Aligned Number Triangle (Challenging)
+```
+n = 5
+        1
+      1 2
+    1 2 3
+  1 2 3 4
+1 2 3 4 5
+```
+
+<br>
+
+### 10. Times Table Quiz Generator (Most Challenging)
+Generate random multiplication questions in multiple rows and columns.
+For example, a 3×3 quiz:
+```
+7×4=   3×9=   8×2=
+6×5=   2×7=   9×3=
+4×8=   5×5=   3×6=
+```
