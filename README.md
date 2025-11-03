@@ -174,8 +174,8 @@ int margin = 50;            // distance from top/left edge
 
 for (int row = 0; row < rows; row++) {
     for (int col = 0; col < cols; col++) {
-        float x = margin + col * spacing;
-        float y = margin + row * spacing;
+        int x = margin + col * spacing;
+        int y = margin + row * spacing;
         ellipse(x, y, circleSize, circleSize);
     }
 }
