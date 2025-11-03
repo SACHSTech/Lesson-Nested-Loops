@@ -5,6 +5,6 @@
 public class Main extends ConsoleProgram {
     @Override
     public void run() {
-        System.out.println("Hello, World!");
+        // Your code goes here
     }
 }

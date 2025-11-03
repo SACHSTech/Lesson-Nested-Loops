@@ -9,7 +9,7 @@ Examples:
 - Building multiplication tables
 - Simulating combinations of values
 
-To represent repetition *within* repetition, we use **nested loops**. A nested loop is simply a loop **inside another loop**.
+To represent repetition *within* repetition, we use **nested loops**. A nested loop is simply a **loop inside another loop**.
 
 <br>
 
@@ -25,63 +25,16 @@ for (int outer = 0; outer < i; outer++) {
 }
 ```
 
-The **outer loop** controls the *rows* or overall cycles.  
-The **inner loop** controls the *columns* or work done *within* each cycle.
+The outer loop controls the *rows* or overall cycles.  
+The inner loop controls the *columns* or work done *within* each cycle.
 
 A helpful way to visualize:
-- The **outer loop** chooses which row you are on.
-- The **inner loop** prints (or processes) the columns in that row.
+- The outer loop chooses which row you are on.
+- The inner loop prints (or processes) the columns in that row.
 
 <br>
 
-## Example 1: Printing a Simple Grid
-
-```java
-for (int row = 1; row <= 3; row++) {
-    for (int col = 1; col <= 3; col++) {
-        System.out.print("(" + row + "," + col + ") ");
-    }
-    System.out.println(); // move to the next row
-}
-```
-
-**Output:**
-```
-(1,1) (1,2) (1,3)
-(2,1) (2,2) (2,3)
-(3,1) (3,2) (3,3)
-```
-
-Notice:
-- `System.out.print()` prints on the same line.
-- `System.out.println()` moves to the next line **after** the inner loop completes.
-
-<br>
-
-## Example 2: Repeating Characters
-
-```java
-for (int row = 1; row <= 4; row++) {
-    for (int col = 1; col <= 6; col++) {
-        System.out.print("*");
-    }
-    System.out.println();
-}
-```
-
-**Output:**
-```
-******
-******
-******
-******
-```
-
-Here, 4 rows × 6 columns.
-
-<br>
-
-## Example 3: Flowchart & Tracing Table
+## Example 1: Flowchart & Tracing Table
 
 Determine the output of this code using flowcharts and tracing tables:
 
@@ -93,7 +46,7 @@ for (int i = 1; i <= 3; i++) {
 }
 ```
 
-We can use a flowchart to visualize the nested loops. The inner loop (j++) is yellow, and the outer loop (i++) is green.
+We can use a flowchart to visualize the nested loops. The inner loop (`j++`) is yellow, and the outer loop (`i++`) is green.
 
 ![flowchart](.media/01.png)
 
@@ -121,10 +74,54 @@ This produces the tracing table below:
 3 1
 3 2
 ```
+<br>
 
+## Example 2: Printing a Simple Grid
+
+```java
+for (int row = 1; row <= 3; row++) {
+    for (int col = 1; col <= 3; col++) {
+        System.out.print("(" + row + "," + col + ") ");
+    }
+    System.out.println(); // move to the next row
+}
+```
+
+**Output:**
+```
+(1,1) (1,2) (1,3)
+(2,1) (2,2) (2,3)
+(3,1) (3,2) (3,3)
+```
+
+Notice:
+- `System.out.print()` prints on the same line.
+- `System.out.println()` moves to the next line **after** the inner loop completes.
 
 <br>
 
+## Example 3: Repeating Characters
+
+```java
+for (int row = 1; row <= 4; row++) {
+    for (int col = 1; col <= 6; col++) {
+        System.out.print("*");
+    }
+    System.out.println();
+}
+```
+
+Here, 4 rows × 6 columns:
+
+**Output:**
+```
+******
+******
+******
+******
+```
+
+<br>
 
 ## Example 4: Multiplication Table
 
@@ -137,23 +134,34 @@ for (int row = 1; row <= 5; row++) {
 }
 ```
 
-Produces a 5×5 multiplication chart.
+Produces a 5×5 multiplication chart:
+
+**Output:**
+```
+1       2       3       4       5
+2       4       6       8       10
+3       6       9       12      15
+4       8       12      16      20
+5       10      15      20      25
+```
 
 <br>
 
 ## Example 5: Processing Graphics
 
-This draws a 3×3 grid of circles:
-
 ```java
 for (int row = 0; row < 3; row++) {
-   for (int col = 0; col < 3; col++) {
-   ellipse(50 + col * 100, 50 + row * 100, 40, 40);
-   }
+    for (int col = 0; col < 3; col++) {
+        ellipse(50 + col * 100, 50 + row * 100, 40, 40);
+    }
 }
 ```
 
-Or, in keeping with our desire to write clearer code, we can refactor the above using meaningful variables (and fewer magic numbers) to communicate its intent:
+This draws a 3×3 grid of circles:
+
+![screenshot](.media/02.png)
+
+Or, in keeping with our desire to write clearer code, we can refactor the above using meaningful variables (and fewer [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming))) to communicate its intent:
 
 ```java
 // Grid configuration
@@ -165,11 +173,11 @@ int spacing = 100;          // distance between circles
 int margin = 50;            // distance from top/left edge
 
 for (int row = 0; row < rows; row++) {
-  for (int col = 0; col < cols; col++) {
-    float x = margin + col * spacing;
-    float y = margin + row * spacing;
-    ellipse(x, y, circleSize, circleSize);
-  }
+    for (int col = 0; col < cols; col++) {
+        float x = margin + col * spacing;
+        float y = margin + row * spacing;
+        ellipse(x, y, circleSize, circleSize);
+    }
 }
 ```
 
@@ -180,7 +188,9 @@ Code should communicate what we are doing, not just how we are doing it!
 # Practice Problems — Nested Loops
 
 ### 1. Number Grid
-Print the numbers 1 to 4 in a 4×4 grid.
+Print the numbers 1 to 4 in a 4×4 grid. Remember, your solution should use nested loops!
+
+HINT: Remember to use `print` vs `println` appropriately. 
 
 ```
 1 2 3 4
@@ -192,10 +202,12 @@ Print the numbers 1 to 4 in a 4×4 grid.
 <br>
 
 ### 2. Triangle of Stars (Left-Aligned)
-Ask for `n`. Print a left-aligned triangle.
+Ask for `n`. Print a left-aligned triangle. 
+
 
 ```
-n = 5
+How many rows? 5
+
 *
 **
 ***
